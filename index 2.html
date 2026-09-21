@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#fff7fa">
+<title>For Rekhu & Gunu 🤍</title>
+<style>
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; min-height: 100vh; overflow-x: hidden;
+    background: linear-gradient(145deg, #fffafc, #fff3f7);
+    color: #9e6d81; font-family: Georgia, 'Times New Roman', serif;
+    text-align: center;
+  }
+  .wrap { width: min(92%, 620px); margin: auto; padding: 28px 0 42px; }
+  .decor { color: #d59ab0; font-size: 22px; line-height: 2; letter-spacing: 5px; }
+  .intro { min-height: 75vh; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 16px; }
+  .intro h1 { font-size: clamp(27px, 7vw, 39px); font-weight: normal; margin: 0; color: #b47d94; }
+  .names { font-size: 27px; color: #c18aa0; }
+  .tap {
+    border: 1px solid #edcbd8; border-radius: 999px; padding: 13px 23px;
+    background: #fff; color: #a66f87; font: inherit; font-size: 16px;
+    box-shadow: 0 5px 18px #e8cbd533; cursor: pointer;
+  }
+  .tap:active { transform: scale(.98); }
+  .hidden { display: none; }
+  .note { font-size: 19px; line-height: 1.7; margin: 22px auto; color: #99677c; }
+  .gallery { display: grid; gap: 16px; margin-top: 22px; }
+  .gallery img {
+    display: block; width: 100%; max-height: 540px; object-fit: contain;
+    background: #fff; border: 5px solid white; border-radius: 18px;
+    box-shadow: 0 6px 20px #d9b8c633;
+  }
+  .shower {
+    position: fixed; top: -40px; z-index: 10; pointer-events: none;
+    animation: fall var(--duration, 3.8s) linear forwards;
+    font-size: var(--size, 22px);
+  }
+  @keyframes fall {
+    to { transform: translate3d(var(--drift, 20px), 110vh, 0) rotate(420deg); opacity: .15; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .shower { animation-duration: 1s; }
+  }
+</style>
+</head>
+<body>
+<main class="wrap">
+  <section class="intro" id="intro">
+    <div class="decor">🌸 ♡ 🌷 🤍 🌸 ♡</div>
+    <h1>A little surprise for</h1>
+    <div class="names">Rekhu &amp; Gunu</div>
+    <p>Tap below for your little shower of love 🤍</p>
+    <button class="tap" id="openBtn" type="button">Open your surprise ♡</button>
+    <div class="decor">♡ 🌷 💗 🌸 ♡</div>
+  </section>
+
+  <section id="surprise" class="hidden">
+    <div class="decor">🌸 ♡ 🌷 💕 🌸 ♡</div>
+    <h1 style="font-weight:normal;font-size:clamp(28px,7vw,40px);margin:14px 0 8px;">Happy Anniversary</h1>
+    <div class="names">Rekhu &amp; Gunu 🤍</div>
+    <p class="note">happy anniversary Amma and nana❤️✨<br>love u both so much, here’s to many more years together☺️🫶</p>
+    <div class="gallery">
+      <img src="photo1.jpeg" alt="A lovely memory">
+      <img src="photo2.jpeg" alt="A lovely memory">
+      <img src="photo3.jpeg" alt="A lovely memory">
+    </div>
+    <div class="decor" style="margin-top:22px;">🌷 🤍 🌸 ♡ 💗 🌸</div>
+  </section>
+</main>
+<script>
+const btn = document.getElementById('openBtn');
+btn.addEventListener('click', () => {
+  document.getElementById('intro').classList.add('hidden');
+  document.getElementById('surprise').classList.remove('hidden');
+  const symbols = ['🌸','🌷','🤍','💕','💗','♡','✨'];
+  for (let i = 0; i < 75; i++) {
+    const item = document.createElement('span');
+    item.className = 'shower';
+    item.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+    item.style.left = Math.random() * 100 + 'vw';
+    item.style.setProperty('--duration', (2.8 + Math.random() * 3.2) + 's');
+    item.style.setProperty('--size', (15 + Math.random() * 19) + 'px');
+    item.style.setProperty('--drift', (Math.random() * 150 - 75) + 'px');
+    item.style.animationDelay = (Math.random() * 1.2) + 's';
+    document.body.appendChild(item);
+    item.addEventListener('animationend', () => item.remove());
+  }
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+</script>
+</body>
+</html>
